@@ -11,6 +11,7 @@ class Session {
    * @param options.credentialType {string} 'access_token' or 'pop_token'
    *
    * @param options.issuer {string} Identity provider (issuer of ID/Access Token)
+   * @param options.gateway {string} Solid gateway
    *
    * @param options.authorization {object}
    * @param options.authorization.client_id {string} OIDC/OAuth2 client id
@@ -29,6 +30,8 @@ class Session {
     this.credentialType = options.credentialType || 'access_token'
 
     this.issuer = options.issuer
+
+    this.gateway = options.gateway
 
     this.authorization = options.authorization || {}
 
@@ -66,6 +69,7 @@ class Session {
       credentialType,
       sessionKey,
       issuer: idClaims.iss,
+      gateway: rp.provider.configuration.gateway,
       idClaims,
       authorization: {
         client_id: registration['client_id'],

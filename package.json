@@ -1,42 +1,32 @@
 {
-  "name": "@solid/oidc-rp",
-  "version": "0.8.0",
+  "name": "oidc-rp-adapted",
+  "version": "1.0.0",
   "description": "OpenID Connect Relying Party client library",
-  "main": "./lib/index.js",
+  "main": "./src/index.js",
   "module": "./src/index.js",
+  "engines": {
+    "node": ">=10"
+  },
   "files": [
-    "lib",
     "dist",
-    "src"
+    "lib"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "npm run build:lib",
     "dist": "webpack --progress",
-    "prepare": "npm run build && npm run dist && npm run test",
+    "prepare": "npm run dist && npm run test",
     "preversion": "npm test",
-    "test": "mocha --timeout=10000"
+    "test": "mocha --timeout=10000",
+    "build:lib": "rm -rf lib && babel src --env-name production -d lib",
+    "prebuildpackage": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anvilresearch/oidc-rp.git"
+    "url": "git+https://github.com/pedropiloto/oidc-rp-adapted.git"
   },
-  "author": "Anvil Research, Inc.",
-  "contributors": [
-    {
-      "name": "Christian Smith",
-      "email": "smith@anvil.io",
-      "url": "http://anvil.io"
-    },
-    {
-      "name": "Dmitri Zagidulin",
-      "url": "https://github.com/dmitrizagidulin"
-    }
-  ],
+  "author": "Pedro Piloto",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/anvilresearch/oidc-rp/issues"
-  },
-  "homepage": "https://github.com/anvilresearch/oidc-rp#readme",
+  "homepage": "https://github.com/pedropiloto/oidc-rp-adapted",
   "dependencies": {
     "@solid/jose": "0.1.8",
     "@trust/json-document": "^0.1.4",
@@ -46,8 +36,8 @@
     "standard-http-error": "^2.0.1",
     "text-encoding": "^0.6.4",
     "whatwg-url": "^6.4.1"
-  },
-  "devDependencies": {
+    },
+    "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "chai": "^4.1.2",
@@ -59,5 +49,5 @@
     "sinon-chai": "^3.1.0",
     "webpack": "^4.11.1",
     "webpack-cli": "^3.0.2"
-  }
+    }
 }
