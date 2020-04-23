@@ -34,7 +34,7 @@ class PoPToken extends JWT {
     return JWK.importKey(jwk)
       .then(importedSessionJwk => {
         let options = {
-          aud: (new URL(resourceServerUri)).origin,
+          aud: Array.of(new URL(resourceServerUri).origin, new URL(session.idClaims.sub).origin),
           key: importedSessionJwk,
           iss: session.authorization.client_id,
           id_token: session.authorization.id_token
