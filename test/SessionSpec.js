@@ -34,7 +34,8 @@ const rp = {
   defaults: { popToken: true },
   registration: {
     client_id: 'client123'
-  }
+  },
+  provider: { configuration: { gateway: 'https://gateway:8080' } }
 }
 const sessionKey = 'session key'
 
